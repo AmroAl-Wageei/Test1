@@ -1,0 +1,1040 @@
+{
+	"info": {
+		"_postman_id": "5d26c8aa-0bd3-40db-8986-a5f0def07a02",
+		"name": "API Collection - QA Lecture copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login- registration",
+			"item": [
+				{
+					"name": "Check User ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    //Global Variable",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check on success Value\", function () {",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"Check on statusCode testcase\", function () {",
+									"    pm.expect(jsonData.statusCode).to.eql(200);",
+									"});",
+									";",
+									"pm.test(\"Check on result value testcase\", function () {",
+									"    pm.expect(jsonData.result).to.eql(true);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppType",
+								"value": "Consumer "
+							},
+							{
+								"key": "version",
+								"value": "3.12.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "phoneNumber",
+									"value": "+9627900000009011190111010500091",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/account/checkuser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"checkuser"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register user ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"   //Global Variable",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check on success Value\", function () {",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "PhoneNumber",
+									"value": "+96279000000090111901110105000915959305935305098848484",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/account/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Phone Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check on success Value\", function () {",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "ConfirmationToken",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "PhoneNumber",
+									"value": "+9627900000009011190111010500091",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/account/ConfirmPhone",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"ConfirmPhone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token consumer ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"authorization\", \"Bearer \" + data.access_token);\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Username",
+									"value": "consumer+9627900000009011190111010500091",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "123456ix",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/account/Token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"Token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Cart List ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    //Global Variable",
+									"var jsonData = pm.response.json();",
+									"//console.log(jsonData.result.response.type);",
+									"",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"New function to check on Status code \", function () {",
+									"    pm.expect(jsonData.statusCode).to.eql(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check on success Value\", function () {",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Testing Cart type\", function () {",
+									"pm.expect(jsonData.result.response[0].type).to.eql(\"Cart\");",
+									"});",
+									"",
+									"//pm.test(\"Total Price\", function () {",
+									"//pm.expect(jsonData.result.response[0].totalPrice).to.eq(105);",
+									"//});",
+									"",
+									"//pm.test(\"Cart Item Id\", function () {",
+									"//pm.expect(jsonData.result.response[0].cartItems[0].id).to.eq//(207547);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Version",
+								"value": "13.2.0"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/carts/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								""
+							]
+						},
+						"description": "return for the user cart list , as a list of product already added from add cart item api. "
+					},
+					"response": []
+				},
+				{
+					"name": "Add Cart Item ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    //Global Variable",
+									"var jsonData = pm.response.json();",
+									"console.log(jsonData.result.response.type);",
+									"",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check value of status\", function () {",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"});",
+									"pm.test(\"Cart type\", function () {",
+									"",
+									"    pm.expect(jsonData.result.response.type).to.eql(\"Cart\");",
+									"",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 7000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(7000);",
+									"});",
+									"",
+									"",
+									"",
+									"pm.test(\"using chai Assertion Library\", function () {",
+									"    pm.expect(100).to.eql(100);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Version",
+								"value": "2.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n      \"Quantity\" : 8,\n      \"ProductId\" : 121074,\n      \"Comment\" : \" Hello Testing1 \"\n\t\n}\n  "
+						},
+						"url": {
+							"raw": "{{url}}/api/carts/cartitems",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								"cartitems"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "Key contains invalid characters.",
+								"key": "Version",
+								"value": " 3.15.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/carts/95341",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								"95341"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart Item ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Version",
+								"value": "2.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/carts/cartitems/207562",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								"cartitems",
+								"207562"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile ",
+			"item": [
+				{
+					"name": "Save Profile First Time Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "musab basheer 2019 ",
+									"type": "text"
+								},
+								{
+									"key": "Gender",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "DateOfBirth",
+									"value": "4/29/1993",
+									"type": "text"
+								},
+								{
+									"key": "MaritalStatus",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "Nationality",
+									"value": "Jordanian",
+									"type": "text"
+								},
+								{
+									"key": "NationalityId",
+									"value": "115221554515",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "musab.basheer@intix.net",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/account/SaveProfileFirstTime",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"SaveProfileFirstTime"
+							]
+						},
+						"description": "MaritalStatus  (Single = 1,Married = 2)"
+					},
+					"response": []
+				},
+				{
+					"name": "Profile ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/account/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Profile Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "xzxzxzzx",
+									"type": "text"
+								},
+								{
+									"key": "Gender",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "DateOfBirth",
+									"value": "4/29/1993",
+									"type": "text"
+								},
+								{
+									"key": "MaritalStatus",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Nationality",
+									"value": "jordanian",
+									"type": "text"
+								},
+								{
+									"key": "NationalityId",
+									"value": "95525411141111",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/account/saveprofile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"saveprofile"
+							]
+						},
+						"description": "MaritalStatus  (Single = 1,Married = 2)"
+					},
+					"response": []
+				},
+				{
+					"name": "Avatar Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/GTS/Pictures/....png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/account/avatar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Locations ",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"Home\",\r\n    \"Landmark\":\"al yermok\",\r\n    \"ContactNumber\":\"+2020202020202\",\r\n    \"AreaId\":11,\r\n    \"Location\":{\r\n        \"City\":\"Irbid\",\r\n        \"Country\":\"Jordan\",\r\n        \"Street\":\"20 test el test\",\r\n        \"Longitude\":\"32.5357996\",\r\n        \"Latitude\":\"35.8555783\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/locations",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"Id\":955,\r\n    \"Name\":\"Home\",\r\n    \"Landmark\":\"al yermok\",\r\n    \"ContactNumber\":\"+2020202020202\",\r\n    \"AreaId\":1,\r\n    \"Location\":{\r\n        \"City\":\"Irbid\",\r\n        \"Country\":\"Jordan\",\r\n        \"Street\":\"20 test el test\",\r\n        \"Longitude\":\"32.0116496\",\r\n        \"Latitude\":\"35.8316379\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/locations",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/locations/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"locations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/locations",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prefer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/locations/prefer/55153",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"locations",
+								"prefer",
+								"55153"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/locations/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"locations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Other",
+			"item": [
+				{
+					"name": "Search ",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//pm.environment.set(\"organizationId\", parseInt(Math.random()*1000));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/products/search?criteria=Tv&groupId=&industryId=&countryId=&classificationId=&organizationId={{organizationId}}&includeSubResults=&page=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "Tv"
+								},
+								{
+									"key": "groupId",
+									"value": ""
+								},
+								{
+									"key": "industryId",
+									"value": ""
+								},
+								{
+									"key": "countryId",
+									"value": ""
+								},
+								{
+									"key": "classificationId",
+									"value": ""
+								},
+								{
+									"key": "organizationId",
+									"value": "{{organizationId}}"
+								},
+								{
+									"key": "includeSubResults",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FAQ List ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/frequentlyAskedQuestions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"frequentlyAskedQuestions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Bulk ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Email",
+								"value": "m.abodames@mukhtar-mall.com",
+								"type": "text"
+							},
+							{
+								"key": "Password",
+								"value": "m.abodames@mukhtar-mall.com",
+								"type": "text"
+							},
+							{
+								"key": "OrgId",
+								"value": "503",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n       \"ExternalId\": \"200400\",\r\n       \"Name\": \" TESTING BY US 29/4 \",\r\n       \"Description\": \"TEST BY M.Y\",\r\n       \"Price\": 100,\r\n      \"MinInventory\": \"25\",\r\n      \"Inventory\": \"100\",\r\n       \"IsAtcive\": true,\r\n       \"Categories\": [\r\n           \"TV For US\"\r\n       ],\r\n        \"Photos\": [        ],\r\n        \" ProductAttributes \": [\r\n            {\r\n                \"Name\": \"TV 30 inch\",\r\n                \"Key\": \"32 inch\",\r\n                \"Value\": \"0\"\r\n            },\r\n            {\r\n                \"Name\": \" TV 50 inch\",\r\n                \"Key\": \"42 inch\",\r\n                \"Value\": \"70\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n       \"ExternalId\": \"200300\",\r\n       \"Name\": \" NEW NEW FINAL TEST USING POSTMAN\",\r\n       \"Description\": \"TEST BY M.Y99\",\r\n       \"Price\": 340,\r\n      \"MinInventory\": \"10\",\r\n      \"Inventory\": \"10\",\r\n       \"IsAtcive\": true,\r\n       \"Categories\": [\r\n           \"TV For US\"\r\n       ],\r\n        \"Photos\": [        ],\r\n        \" ProductAttributes \": [\r\n            {\r\n                \"Name\": \"TV 60 inch\",\r\n                \"Key\": \"32 inch\",\r\n                \"Value\": \"0\"\r\n            },\r\n            {\r\n                \"Name\": \" TV 70 inch\",\r\n                \"Key\": \"42 inch\",\r\n                \"Value\": \"70\"\r\n            }\r\n        ]\r\n    }\r\n]\r\n"
+						},
+						"url": {
+							"raw": "{{url}}/api/products/ImportBulkproducts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"ImportBulkproducts"
+							]
+						},
+						"description": "This api used to upload builk product info DB"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
